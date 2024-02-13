@@ -2,6 +2,8 @@
 #-------------------------------------
 #curl -X POST "https://accounts.spotify.com/api/token" \
 #     -H "Content-Type: application/x-www-form-urlencoded" \
-#     -d "grant_type=client_credentials&client_id=bb8784cc254141239c34e4b1e00ba49e&client_secret=4a66810306e54c6e9d37ea46d586e2d2"
+#     -d "grant_type=client_credentials&client_id=3e476130943a4d89abd801a74741bf0e&client_secret=0a7e6ea9dbc84274bb39e7dd8a91988c"
 
-spotify_key = "BQBHl2orary4m4bnElXE0fJugfuXpW4wwSF2tIGI2HlQe8xvkoVtlPp73bp_RFmAARuDP2XeCCFuSBXWIhFGXWRALMdSQB-cYFF6SQpKswJYkduzGgQ"
+
+
+spotify_key = "BQAXJKSKLhIAXGTvwyYUoVUY_UmR27YtKhnhWYbEWQxkPJZbw-jL9xB4B7jpRzgr8SlnKQO1Yngpp0DYWdN9cRqaUS1JUUPj_YKcGWkXiWYnEFjGkTQ"
