@@ -1,6 +1,3 @@
-
-
-
 # Project-1
 ## Spotify Data Analysis Through the Generations
 
@@ -43,75 +40,43 @@ Because there is some limitations, you need to creat access token each time as y
     -d "grant_type=client_credentials&client_id="your_client_id"&client_secret="your_client_secret""
 3. Use the access token in your API requests.
 
-# Import requests library
-import requests
-import json
-import pandas as pd
-import time
+### Data Cleaning and Dataframe Manipulation
 
-# Define base URL and headers
-base_url = "https://api.spotify.com/v1/tracks"
-headers = {"Authorization": "Bearer  BQBXcGB2Gv6NfOzKWFr0z9POVS-Dxptsg9eISYU1pYOOJVnNjEsj6zrzpXO_73_Kq9nNzS9DfgHLDK-1fuUwcW5NMvNlFuO3YOoRwjAnY1cy0VNDHfA"}
+Further data cleaning and manipulation are performed, including:
+- Handling blank rows.
+- Saving the cleaned dataset to a CSV file for future use.
+- Analyzing the dataset by creating additional columns for `release_year` and splitting the `artists` column.
 
-# Define the batch size (how many IDs per request)
-batch_size = 50
+### Dataset Exploratory Analysis
 
-# Initialize an empty list to store the results
-results = []
-counter = 0
-# Loop over the rows of the spotify_df dataframe starting from the last index
-for index, row in spotify_df.iterrows():
-    if counter >= 1000:
-        counter = 0
-        time.sleep(28)
-    else:
-        counter+=1
-    # Append the track ID to the results list
-        results.append(row["track_id"])
-        # Check if the results list has reached the batch size or the end of the dataframe
-        if len(results) == batch_size or index == len(spotify_df) - 1:
-            # Join the IDs with a comma as a query parameter
-            query = ",".join(results)
-            # Make a request with the query and headers
-            response = requests.get(base_url, params={"ids": query}, headers=headers)
-            # Get the JSON data from the response
-            data = response.json()
-            #print(json.dumps(data,indent=4))
-            # Get the tracks from the data
-            tracks = data["tracks"]
-            # Loop over the tracks and update the dataframe with the information
-            try:
-                for track in tracks:
-                    # Find the row index that matches the track ID
-                    row_index = spotify_df[spotify_df["track_id"] == track["id"]].index[0]
-                    # Update the release date, track popularity, and number of tracks in album columns
-                    spotify_df.loc[row_index, "release_date"] = track["album"]["release_date"]
-                    spotify_df.loc[row_index, "track_popularity"] = track["popularity"]
-                    spotify_df.loc[row_index, "#_of_tracks_in_album"] = track["album"]["total_tracks"]
-                    print(f"The track {spotify_df.loc[row_index, 'track_name']} release date is {spotify_df.loc[row_index, 'release_date']}. Popularity: {spotify_df.loc[row_index, 'track_popularity']}. # of tracks: {spotify_df.loc[row_index,'#_of_tracks_in_album']}.")
-            except: 
-                print("Theres no data or an error")
-            # Clear the results list for the next batch
-            results.clear()   
+The code conducts exploratory analysis on the dataset, including:
+- Analyzing track generation trends.
+- Analyzing track genrsand artists popularity across generations.
+- Analyzing the distribution of music genres across generations.
+- Identifying top songs and exploring their attributes.
+- Visualizing correlations between track features in each generation and popularity.
+- Visualizing correlations between track attributes and popularity.
 
-After calling the API, we removed duplicate albums and song names, includes any cover songs or live/extended/remastered versions removed album or song names with any foreign letters and languages
-# How many rows are blank? We reached the time limit for the API call key and will have to drop the rows with blank values. 
-print(spotify_df.eq("").any())
-print(f"There are {spotify_df['release_date'].eq('').sum()} blank rows.")
-# Replace blank values with np.nan
-spotify_df = spotify_df.replace("", np.nan)
-# Drop the rows with null values
-spotify_df = spotify_df.dropna(how="any")
-print(spotify_df.eq("").any())
+### Dependencies
 
-# Save the spotify_df dataframe to a csv file so we can access data later without running the API again
-spotify_df.to_csv('../Resources/spotify_clean_data.csv', encoding='utf-8', index=False)
+The code relies on the following Python libraries:
+- `requests`
+- `json`
+- `pandas`
+- `numpy`
+- `datetime`
+- `matplotlib`
+- `scipy`
+- `seaborn`
 
-# Creating another column called release year in order to analyze by year
-spotify_clean_df["release_year"] = spotify_clean_df["release_date"].str[:4]
-spotify_clean_df["release_year"] = pd.to_numeric(spotify_clean_df["release_year"])
+Ensure that these libraries are installed in your Python environment to run the code successfully.
 
-# Splitting the artists column to name the main artist and the featured artists in different columns
-split_artists = spotify_clean_df["artists"].str.split(";")
-spotify_clean_df["artist"] = split_artists.str.get(0)
-spotify_clean_df
+### Usage
+
+1. Clone this repository to your local machine.
+2. Ensure the dependencies are installed.
+3. Run the Python scripts in a compatible environment to analyze the Spotify dataset.
+
+### Contributions
+
+Contributions to this repository are welcome. If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
