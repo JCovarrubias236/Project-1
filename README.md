@@ -18,9 +18,9 @@ Dataset was created in October of 2023 and it has 114,000 rows and 21 columns of
 3. Adding Empty Columns: Three new columns named "release_date", "#_of_tracks_in_album", and "track_popularity" are added to the DataFrame, initially filled with empty strings.
 4. Filtering Rows: Rows containing album names or track names with foreign letters are removed from the DataFrame. The removal of rows with non-English characters suggests an attempt to standardize the data or avoid potential issues with encoding or language discrepancies during subsequent operations.
 
-# Reducing any duplicate album and track names
+#Reducing any duplicate album and track names
 spotify_df = spotify_df.drop_duplicates(subset=["album_name", "track_name"]).reset_index()
-# Deleting column that was from the kaggle dataset
+#Deleting column that was from the kaggle dataset
 del spotify_df["Unnamed: 0"]
 del spotify_df["key"]
 del spotify_df["time_signature"]
