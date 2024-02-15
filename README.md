@@ -6,6 +6,9 @@ Since the start of the new millenia, music consumption has been digitized and co
 
 Depending on what (recent) generation you may have been born in, the consumption, listening habits, and popularity of genres or music types may differ. Our team was interested in analyzing music trends of the past to determine if its possible to predict the trends of the next generation to come. 
 
+Spotify is a streaming platform established in 2006, and the popularity is calculated by Spotify's algorithm based mostly on the total number of plays the track has had and how recent those plays are. Songs that are being played a lot now will have a higher popularity than songs that were played in the past.
+This analysis is good for understanding market preferences nowadays and can be used for marketing and content creation strategies rather than historical music industry analysis.
+
 Objectives
 1. How has the number of tracks (songs) changed over time, specifically across each generation.
 2. Understand how have features of tracks evolved over time? What features seem to be the most common in each listening generation.
@@ -48,9 +51,10 @@ Further data cleaning and manipulation are performed, including:
 
 The code conducts exploratory analysis on the dataset, including:
 - Analyzing track generation trends.
-- Analyzing track popularity across generations.
+- Analyzing track genrsand artists popularity across generations.
 - Analyzing the distribution of music genres across generations.
 - Identifying top songs and exploring their attributes.
+- Visualizing correlations between track features in each generation and popularity.
 - Visualizing correlations between track attributes and popularity.
 
 ### Dependencies
