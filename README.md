@@ -35,10 +35,11 @@ Spotify’s API has limitations on the amount of data that you use.
 Because there is some limitations, you need to creat access token each time as you want to call Spotify API's. Here's a step-by-step guide to help you through the process:
 1. Log into the dashboard using your Spotify account.
 2. Create an app and select "Web API" for the question asking which APIs are you planning to use. Once you have created your app, you will have access to the app credentials (client_id & client_secret). These will be required for API authorization to obtain an access token.
+   
     curl -X POST "https://accounts.spotify.com/api/token" \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -d "grant_type=client_credentials&client_id="your_client_id"&client_secret="your_client_secret""
-3. Use the access token in your API requests.
+4. Use the access token in your API requests.
 
 ### Data Cleaning and Dataframe Manipulation
 
